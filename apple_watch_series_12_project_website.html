@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apple Watch Series 12 — Understanding User Needs</title>
+<style>
+:root{
+  --blue:#1677ff; --blue2:#5da4ff; --ink:#101522; --muted:#667085;
+  --line:#e8edf5; --soft:#f5f8fc; --white:#fff;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Arial,sans-serif;
+  color:var(--ink);background:#fff;line-height:1.5;
+}
+a{text-decoration:none;color:inherit}
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:10;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:16px 6%;background:rgba(255,255,255,.82);backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(232,237,245,.8)
+}
+.logo{font-weight:800;letter-spacing:-.5px}.logo span{color:var(--blue)}
+.navlinks{display:flex;gap:26px;font-size:14px;color:#555}
+.navlinks a:hover{color:var(--blue)}
+.hero{
+  min-height:92vh;padding:150px 7% 80px;display:grid;grid-template-columns:1.05fr .95fr;
+  align-items:center;gap:50px;background:radial-gradient(circle at 75% 35%,#eaf3ff 0,transparent 33%),#fff;
+}
+.eyebrow{color:var(--blue);font-weight:700;letter-spacing:1.8px;text-transform:uppercase;font-size:13px}
+h1{font-size:clamp(48px,7vw,88px);line-height:.98;letter-spacing:-5px;margin:16px 0 24px}
+.gradient{background:linear-gradient(100deg,#101522,#1677ff);-webkit-background-clip:text;color:transparent}
+.hero p{font-size:20px;color:var(--muted);max-width:610px}
+.buttons{display:flex;gap:14px;margin-top:30px;flex-wrap:wrap}
+.btn{padding:13px 20px;border-radius:999px;font-weight:700;font-size:14px}
+.primary{background:var(--blue);color:white;box-shadow:0 10px 30px #1677ff30}
+.secondary{border:1px solid #dfe6f0;background:#fff}
+.concept{font-size:12px;color:#8791a3;margin-top:16px}
+.watch-stage{display:flex;justify-content:center;align-items:center;min-height:500px}
+.watch{
+  width:260px;height:330px;border-radius:65px;position:relative;
+  background:linear-gradient(145deg,#dfe5ec,#8f99a7);padding:14px;
+  box-shadow:0 35px 70px #1a2a4530, inset 3px 3px 7px #fff8;
+  transform:rotate(7deg);animation:float 5s ease-in-out infinite;
+}
+.watch:before,.watch:after{
+  content:"";position:absolute;left:53px;width:154px;height:125px;background:linear-gradient(#202938,#10141d);
+  border-radius:35px;z-index:-1
+}
+.watch:before{top:-95px}.watch:after{bottom:-95px}
+.screen{
+  height:100%;border-radius:53px;background:
+  radial-gradient(circle at 70% 25%,#3d8cff 0 4%,transparent 5%),
+  linear-gradient(145deg,#071221,#162c4d 55%,#07101e);
+  color:white;padding:42px 24px;box-shadow:inset 0 0 0 2px #ffffff15;
+}
+.time{font-size:52px;font-weight:700;letter-spacing:-3px}.date{font-size:14px;color:#a9c8ff}
+.metric{margin-top:55px;display:flex;align-items:center;gap:10px;font-size:15px}
+.heart{color:#ff4d6d;font-size:26px}.bpm{font-size:25px;font-weight:700}
+@keyframes float{50%{transform:rotate(4deg) translateY(-12px)}}
+section{padding:100px 7%}
+.section-head{text-align:center;max-width:760px;margin:0 auto 50px}
+.section-head h2{font-size:46px;letter-spacing:-2px;margin:8px 0 12px}
+.section-head p{color:var(--muted);font-size:18px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;max-width:1200px;margin:auto}
+.card{
+  background:var(--soft);border:1px solid var(--line);border-radius:24px;padding:28px;
+  transition:.25s
+}
+.card:hover{transform:translateY(-6px);box-shadow:0 18px 45px #1b4c8a12}
+.icon{width:48px;height:48px;border-radius:15px;background:#e5f0ff;color:var(--blue);
+display:grid;place-items:center;font-size:24px;margin-bottom:20px}
+.card h3{margin:0 0 8px;font-size:20px}.card p{margin:0;color:var(--muted);font-size:15px}
+.dark{background:#0d1420;color:#fff}
+.dark .section-head p{color:#aeb8c8}
+.dark .card{background:#151f2e;border-color:#253246}.dark .card p{color:#aeb8c8}
+.priorities{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;max-width:1000px;margin:auto}
+.priority{padding:25px;text-align:center;border-radius:22px;background:white;border:1px solid var(--line)}
+.priority strong{display:block;font-size:19px;margin:8px 0}.priority span{color:var(--muted);font-size:14px}
+.bar{height:8px;border-radius:99px;background:#e8eef7;overflow:hidden;margin-top:14px}.fill{height:100%;background:linear-gradient(90deg,#1677ff,#7db8ff);border-radius:99px}
+.feature-wrap{max-width:1100px;margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.feature{border:1px solid var(--line);border-radius:28px;padding:32px;background:#fff}
+.feature h3{font-size:25px;margin:0 0 8px}.feature p{color:var(--muted)}
+.stat{font-size:48px;font-weight:800;letter-spacing:-2px;color:var(--blue)}
+.cta{
+  margin:20px 7% 80px;padding:75px 8%;border-radius:38px;text-align:center;
+  background:linear-gradient(135deg,#0c1524,#164a9b);color:white;overflow:hidden;position:relative
+}
+.cta:after{content:"";position:absolute;width:350px;height:350px;border-radius:50%;background:#4da0ff30;right:-100px;top:-150px}
+.cta h2{font-size:52px;letter-spacing:-2px;margin:0 0 15px;position:relative;z-index:1}
+.cta p{color:#c8d9f2;max-width:650px;margin:auto;position:relative;z-index:1}
+footer{padding:30px 7%;border-top:1px solid var(--line);display:flex;justify-content:space-between;color:#7a8494;font-size:12px}
+@media(max-width:850px){
+ .hero{grid-template-columns:1fr;padding-top:120px}.watch-stage{min-height:390px}
+ .grid,.priorities{grid-template-columns:1fr 1fr}.feature-wrap{grid-template-columns:1fr}
+ .navlinks{display:none}h1{letter-spacing:-3px}.section-head h2{font-size:38px}
+}
+@media(max-width:520px){.grid,.priorities{grid-template-columns:1fr}section{padding:75px 5%}.hero{padding-left:5%;padding-right:5%}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">WATCH <span>12</span></div>
+  <div class="navlinks">
+    <a href="#features">Features</a>
+    <a href="#needs">User Needs</a>
+    <a href="#future">Future</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div>
+    <div class="eyebrow">School Project • Wearable Technology</div>
+    <h1>Meet the <span class="gradient">Apple Watch Series 12.</span></h1>
+    <p>A future-focused concept built around what users actually want: better health insights, longer battery life, greater comfort and a more accessible price.</p>
+    <div class="buttons">
+      <a class="btn primary" href="#features">Explore the concept ↓</a>
+      <a class="btn secondary" href="#needs">See user needs</a>
+    </div>
+    <div class="concept">Concept website for a school project. Series 12 features shown here are proposed ideas, not official Apple specifications.</div>
+  </div>
+  <div class="watch-stage" aria-label="Illustration of a concept Apple Watch">
+    <div class="watch">
+      <div class="screen">
+        <div class="date">FRIDAY · 14 AUG</div>
+        <div class="time">09:41</div>
+        <div class="metric"><span class="heart">♥</span><div><span class="bpm">72</span> BPM<br><small>Heart Rate</small></div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="features">
+  <div class="section-head">
+    <div class="eyebrow">Designed around people</div>
+    <h2>One watch. More of what matters.</h2>
+    <p>Wearable technology becomes more useful when it solves everyday problems instead of simply adding more features.</p>
+  </div>
+  <div class="grid">
+    <div class="card"><div class="icon">♥</div><h3>Health</h3><p>Smarter sensors and clearer insights to help users understand their wellbeing.</p></div>
+    <div class="card"><div class="icon">⚡</div><h3>Battery</h3><p>Extended battery life so the watch can keep up with school, sport and everyday life.</p></div>
+    <div class="card"><div class="icon">⌁</div><h3>Connection</h3><p>Notifications, calls, messages and useful information right on your wrist.</p></div>
+    <div class="card"><div class="icon">◌</div><h3>Comfort</h3><p>A lightweight design made to feel natural during all-day wear.</p></div>
+  </div>
+</section>
+
+<section id="needs" class="dark">
+  <div class="section-head">
+    <div class="eyebrow">Understanding user needs</div>
+    <h2>What do people want?</h2>
+    <p>For this project, the biggest priorities are affordability, battery life, health tracking and comfort.</p>
+  </div>
+  <div class="priorities">
+    <div class="priority"><div style="font-size:30px">💲</div><strong>Price</strong><span>Affordable technology</span><div class="bar"><div class="fill" style="width:92%"></div></div></div>
+    <div class="priority"><div style="font-size:30px">🔋</div><strong>Battery</strong><span>Longer everyday use</span><div class="bar"><div class="fill" style="width:88%"></div></div></div>
+    <div class="priority"><div style="font-size:30px">♥</div><strong>Health Sensors</strong><span>Better health insights</span><div class="bar"><div class="fill" style="width:82%"></div></div></div>
+    <div class="priority"><div style="font-size:30px">⌚</div><strong>Comfort</strong><span>Lightweight design</span><div class="bar"><div class="fill" style="width:78%"></div></div></div>
+  </div>
+</section>
+
+<section>
+  <div class="section-head">
+    <div class="eyebrow">The concept</div>
+    <h2>Built for real life.</h2>
+    <p>The Series 12 concept turns user feedback into practical design decisions.</p>
+  </div>
+  <div class="feature-wrap">
+    <div class="feature"><div class="stat">01</div><h3>More accessible</h3><p>A more affordable approach could make useful wearable technology available to more people, especially students and families.</p></div>
+    <div class="feature"><div class="stat">02</div><h3>More useful</h3><p>Improved health tracking could turn raw sensor data into simple, understandable information users can act on.</p></div>
+    <div class="feature"><div class="stat">03</div><h3>More comfortable</h3><p>A lighter case and comfortable band could make all-day and overnight wear easier.</p></div>
+    <div class="feature"><div class="stat">04</div><h3>More dependable</h3><p>Longer battery life means less charging and more continuous tracking throughout the day.</p></div>
+  </div>
+</section>
+
+<section id="future" style="background:#f5f8fc">
+  <div class="section-head">
+    <div class="eyebrow">Looking ahead</div>
+    <h2>The future is wearable.</h2>
+    <p>Future wearable technology could become increasingly intelligent, personal and sustainable.</p>
+  </div>
+  <div class="grid">
+    <div class="card"><div class="icon">✦</div><h3>Advanced sensors</h3><p>More accurate measurements and richer health insights.</p></div>
+    <div class="card"><div class="icon">◉</div><h3>AI assistance</h3><p>Personalised suggestions based on patterns and routines.</p></div>
+    <div class="card"><div class="icon">↗</div><h3>Longer power</h3><p>Better efficiency, faster charging and less time connected to a charger.</p></div>
+    <div class="card"><div class="icon">♻</div><h3>Sustainable design</h3><p>Longer-lasting products and more responsible materials.</p></div>
+  </div>
+</section>
+
+<div class="cta">
+  <h2>Technology that fits your life.</h2>
+  <p>The best wearable is not the one with the most features. It is the one that understands what people actually need.</p>
+</div>
+
+<footer>
+  <span>Apple Watch Series 12 — Concept Project</span>
+  <span>Designed for presentation • 2026</span>
+</footer>
+
+</body>
+</html>
